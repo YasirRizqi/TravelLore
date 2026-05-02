@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowLeft } from 'lucide-react';
 import Hero from '@/components/Hero';
 import JourneyForm from '@/components/JourneyForm';
 import ItineraryResult from '@/components/ItineraryResult';
@@ -19,13 +20,22 @@ export default function Home() {
 
   const handleStart = () => {
     setAppState('form');
-    // Scroll to top
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo(0, 0);
+  };
+
+  const handleBackToHome = () => {
+    setAppState('home');
+    window.scrollTo(0, 0);
+  };
+
+  const handleBackToForm = () => {
+    setAppState('form');
+    window.scrollTo(0, 0);
   };
 
   const generateItinerary = async (data: JourneyFormData, refinement?: string) => {
     setAppState('loading');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo(0, 0);
 
     try {
       const response = await fetch('/api/generate-itinerary', {
@@ -85,7 +95,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="w-full"
+            className="w-full relative"
           >
             <JourneyForm onSubmit={handleFormSubmit} isLoading={false} />
           </motion.div>
@@ -123,7 +133,7 @@ export default function Home() {
             <h2 className="text-2xl font-bold text-brand-navy mt-8 mb-2">Oops!</h2>
             <p className="text-brand-navy/70 mb-8 max-w-md">{errorMsg}</p>
             <button
-              onClick={() => appState === 'error' && formData ? generateItinerary(formData) : setAppState('form')}
+              onClick={() => appState === 'error' && formData ? generateItinerary(formData) : handleBackToForm()}
               className="px-8 py-3 bg-brand-navy text-brand-cream rounded-full font-bold hover:bg-brand-emerald transition-all"
             >
               Try Again
@@ -136,11 +146,21 @@ export default function Home() {
             key="result"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            className="w-full"
+            className="w-full relative flex flex-col items-center"
           >
+
             <ItineraryResult itinerary={itinerary} />
-            <div className="pb-24">
+            
+            <div className="pb-24 w-full flex flex-col items-center">
               <RefinementActions onRefine={handleRefine} isLoading={false} />
+              
+              <button
+                onClick={handleBackToForm}
+                className="mt-16 px-8 py-4 bg-brand-cream border-2 border-brand-navy text-brand-navy rounded-full font-bold hover:bg-brand-navy hover:text-brand-cream transition-all flex items-center gap-2 shadow-sm"
+              >
+                <ArrowLeft size={20} />
+                Create Another Journey
+              </button>
             </div>
           </motion.div>
         )}

@@ -15,10 +15,10 @@ export default function Logo({ className = '', variant = 'light' }: LogoProps) {
       <div className="relative flex items-center justify-center">
         {/* Main Compass */}
         <Compass className={`w-8 h-8 ${iconColor}`} strokeWidth={2} />
-        
+
         {/* Map path background/accent */}
         <Map className="w-5 h-5 text-brand-emerald absolute -bottom-1 -right-1 opacity-70" strokeWidth={2} />
-        
+
         {/* Sparkle */}
         <Sparkles className="w-4 h-4 text-brand-gold absolute -top-1 -right-1 animate-pulse" strokeWidth={2.5} fill="currentColor" />
       </div>

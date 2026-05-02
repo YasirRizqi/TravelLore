@@ -86,7 +86,7 @@ export default function LoroCharacter({ state = 'default', className = '', size 
 
         {/* Main Body */}
         <div className="relative w-3/4 h-3/4 bg-gradient-to-b from-brand-cream to-[#F0E6D2] rounded-full shadow-[0_0_30px_rgba(244,162,97,0.4)] flex flex-col items-center justify-center border-4 border-white/50 overflow-hidden">
-          
+
           {/* Eyes */}
           <div className="flex gap-4 mb-2 z-10">
             {state === 'error' ? (
@@ -120,8 +120,8 @@ export default function LoroCharacter({ state = 'default', className = '', size 
 
         {/* Loading Map Icon / Error Icon overlay */}
         {state === 'loading' && (
-          <motion.div 
-            animate={{ rotate: 360 }} 
+          <motion.div
+            animate={{ rotate: 360 }}
             transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
             className="absolute -bottom-4 right-0 bg-white p-1.5 rounded-full shadow-lg text-brand-emerald"
           >

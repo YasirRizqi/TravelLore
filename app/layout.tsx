@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Link from "next/link";
 import "./globals.css";
 import Logo from "@/components/Logo";
 
@@ -31,7 +32,9 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-brand-cream text-brand-navy">
         {/* Navbar */}
         <header className="sticky top-0 z-50 bg-brand-cream/80 backdrop-blur-md border-b border-brand-navy/10 py-4 px-6 md:px-12 flex items-center justify-between">
-          <Logo variant="light" />
+          <a href="/">
+            <Logo variant="light" className="cursor-pointer hover:opacity-80 transition-opacity" />
+          </a>
         </header>
 
         {/* Main Content */}
@@ -46,7 +49,7 @@ export default function RootLayout({
             TravelLore AI transforms ordinary itineraries into cinematic, story-driven journeys.
           </p>
           <div className="mt-8 text-xs opacity-50">
-            &copy; {new Date().getFullYear()} TravelLore AI. All rights reserved. MVP Demo.
+            &copy; {new Date().getFullYear()} TravelLore AI. All rights reserved.
           </div>
         </footer>
       </body>
